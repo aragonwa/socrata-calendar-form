@@ -1,0 +1,23 @@
+{
+  "name": "calendar-form",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "body-parser": "^1.15.2",
+    "bootstrap": "^3.3.7",
+    "express": "^4.14.0",
+    "gulp": "^3.9.1",
+    "gulp-nodemon": "^2.2.1",
+    "pug": "^2.0.0-beta6",
+    "soda-js": "^0.2.2"
+  },
+  "devDependencies": {
+    "gulp-livereload": "^3.8.1"
+  }
+}

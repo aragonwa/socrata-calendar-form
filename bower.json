@@ -1,0 +1,21 @@
+{
+  "name": "calendar-form",
+  "description": "",
+  "main": "index.js",
+  "authors": [
+    "Alex Aragon <Alex.Aragon@kingcounty.gov>"
+  ],
+  "license": "ISC",
+  "homepage": "",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "eonasdan-bootstrap-datetimepicker": "^4.17.44",
+    "font-awesome": "fontawesome#^4.7.0"
+  }
+}

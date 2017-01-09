@@ -1,0 +1,118 @@
+doctype html
+html(lang="en")
+  head
+    meta(charset="utf-8")
+    meta(name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no")
+    link(rel="stylesheet" href="/bootstrap/dist/css/bootstrap.min.css")
+    link(rel="stylesheet" href="/font-awesome/css/font-awesome.css")
+    link(rel="stylesheet" href="/eonasdan-bootstrap-datetimepicker/build/css/bootstrap-datetimepicker.css")
+    title King County calendar input form
+     <!--[if lt IE 9]>
+      script(src="//oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js")
+      script(src="//oss.maxcdn.com/respond/1.4.2/respond.min.js")
+    <![endif]-->
+  body
+    .container
+      .row
+        .col-sm-12
+          h1 King County calendar input form
+        .col-sm-12(style="margin-bottom:40px")
+          form(action="/" method="post" id="calendar-form")
+            .form-group
+              label(for="start-date-time") Start date/time
+              input.form-control.datetimepicker(type="text" name="start-time-date" id="start-time-date")
+            .form-group
+              label(for="end-date-time") End date/time
+              input.form-control.datetimepicker(type="text" name="end-time-date" id="end-time-date")
+            .form-group
+              label(for="event-name") End date/time
+              textarea.form-control(type="text" name="event-name" id="event-name")
+            .form-group
+              label(for="event-description") Event description/details
+              textarea.form-control(type="text" name="event-description" id="event-description")
+            .panel.panel-primary
+              .panel-heading Location
+              .panel-body
+                .form-group
+                  label(for="location-name") Location name
+                  input.form-control(type="text" name="location-name" id="location-name")
+                .form-group
+                  label(for="street") Street
+                  input.form-control(type="text" name="street" id="street")
+                .form-group
+                  label(for="city") City
+                  input.form-control(type="text" name="city" id="city")
+                .form-group
+                  label(for="state") State
+                  input.form-control(type="text" name="state" id="state" value="WA")
+            .panel.panel-primary
+              .panel-heading URL
+              .panel-body
+                .form-group
+                  label(for="link-url") Link URL
+                  input.form-control(type="text" name="link-url" id="link-url")
+                .form-group
+                  label(for="link-text") Link text
+                  input.form-control(type="text" name="link-text" id="link-text")
+            .panel.panel-primary
+              .panel-heading Contact information
+              .panel-body
+                .form-group
+                  label(for="contact-name") Name
+                  input.form-control(type="text" name="contact-name" id="contact-name")
+                .form-group
+                  label(for="contact-email") Email
+                  input.form-control(type="text" name="contact-email" id="contact-email")
+                .form-group
+                  label(for="contact-email") Phone
+                  .row
+                    .col-sm-8
+                      input.form-control(type="text" name="contact-email" id="contact-email")
+                    .col-sm-4
+                      select.form-control id="form_field_contact_phone_phone_type" name="contact_phone:phone_type"
+                        option(value="") (Blank)
+                        option(value="Home") Home
+                        option(value="Cell") Cell
+                        option(value="Work") Work
+                        option(value="Fax") Fax
+                        option(value="Other") Other
+            .form-group
+              label(for="contact-dept") Host/Contact Department
+              input.form-control(type="text" name="contact-dept" id="contact-dept")
+            .form-group
+              label(for="feed-keywords") Feed Keyword(s)
+              input.form-control(type="text" name="feed-keywords" id="feed-keywords")
+            .checkbox.form-group
+              label(for="display-o-home-page" title="Display on Home Page")
+                input(type="checkbox" id="display-o-home-page" name="display-o-home-page")
+                | Display on KC home page
+            .form-group.panel.panel-primary
+              .panel-heading Categories
+              .panel-body
+                .row
+                  .col-sm-6
+                    .checkbox
+                      label(for="category-arts-culture" title="Arts and Culture")
+                      input(type="checkbox" id="category-arts-culture" name="category-arts_culture")
+                      | Arts and culture
+                    .checkbox
+                      label(for="category-best-starts" title="Best Starts for Kids")
+                      input(type="checkbox" id="category-best-starts" name="category-best-starts")
+                      | Best Starts for Kids
+            button.btn.btn-primary(type="submit") Add to calendar
+    script(src="//code.jquery.com/jquery-3.1.1.slim.min.js")
+    script(type="text/javascript" src="/bootstrap/dist/js/bootstrap.min.js")
+    script(type="text/javascript" src="/moment/min/moment.min.js")
+    script(type="text/javascript" src="/eonasdan-bootstrap-datetimepicker/build/js/bootstrap-datetimepicker.min.js")
+    script.
+       $(function () {
+            $('.datetimepicker').datetimepicker({
+              icons: {
+                time: "fa fa-clock-o",
+                date: "fa fa-calendar",
+                up: "fa fa-arrow-up",
+                down: "fa fa-arrow-down"
+                }
+            });
+        });
+    
