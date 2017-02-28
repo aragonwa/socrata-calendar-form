@@ -6,7 +6,7 @@ html(lang="en")
     link(rel="stylesheet" href="/bootstrap/dist/css/bootstrap.min.css")
     link(rel="stylesheet" href="/font-awesome/css/font-awesome.css")
     link(rel="stylesheet" href="/eonasdan-bootstrap-datetimepicker/build/css/bootstrap-datetimepicker.css")
-    title King County calendar input form
+    title King County Master Calendar Input
      <!--[if lt IE 9]>
       script(src="//oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js")
       script(src="//oss.maxcdn.com/respond/1.4.2/respond.min.js")
@@ -15,27 +15,27 @@ html(lang="en")
     .container
       .row
         .col-sm-12
-          h1 King County calendar input form
+          h1 King County Master Calendar Input
         .col-sm-12(style="margin-bottom:40px")
           form(action="/" method="post" id="calendar-form")
             .form-group
-              label(for="start-date-time") Start date/time
-              input.form-control.datetimepicker(type="text" name="start-time-date" id="start-time-date")
+              label(for="startDateTime") Start date/time
+              input.form-control.datetimepicker(type="text" name="startTimeDate" id="startTimeDate")
             .form-group
-              label(for="end-date-time") End date/time
-              input.form-control.datetimepicker(type="text" name="end-time-date" id="end-time-date")
+              label(for="endTimeDate") End date/time
+              input.form-control.datetimepicker(type="text" name="endTimeDate" id="endTimeDate")
             .form-group
-              label(for="event-name") End date/time
-              textarea.form-control(type="text" name="event-name" id="event-name")
+              label(for="eventName") Event name
+              textarea.form-control(type="text" name="eventName" id="eventName")
             .form-group
-              label(for="event-description") Event description/details
-              textarea.form-control(type="text" name="event-description" id="event-description")
+              label(for="eventDescription") Event description/details
+              textarea.form-control(type="text" name="eventDescription" id="eventDescription")
             .panel.panel-primary
               .panel-heading Location
               .panel-body
                 .form-group
-                  label(for="location-name") Location name
-                  input.form-control(type="text" name="location-name" id="location-name")
+                  label(for="locationName") Location name
+                  input.form-control(type="text" name="locationName" id="locationName")
                 .form-group
                   label(for="street") Street
                   input.form-control(type="text" name="street" id="street")
@@ -44,32 +44,86 @@ html(lang="en")
                   input.form-control(type="text" name="city" id="city")
                 .form-group
                   label(for="state") State
-                  input.form-control(type="text" name="state" id="state" value="WA")
+                  select.form-control(name="state" id="state")
+                    option(value='AL') AL
+                    option(value='AK') AK
+                    option(value='AZ') AZ
+                    option(value='AR') AR
+                    option(value='CA') CA
+                    option(value='CO') CO
+                    option(value='CT') CT
+                    option(value='DE') DE
+                    option(value='DC') DC
+                    option(value='FL') FL
+                    option(value='GA') GA
+                    option(value='HI') HI
+                    option(value='ID') ID
+                    option(value='IL') IL
+                    option(value='IN') IN
+                    option(value='IA') IA
+                    option(value='KS') KS
+                    option(value='KY') KY
+                    option(value='LA') LA
+                    option(value='ME') ME
+                    option(value='MD') MD
+                    option(value='MA') MA
+                    option(value='MI') MI
+                    option(value='MN') MN
+                    option(value='MS') MS
+                    option(value='MO') MO
+                    option(value='MT') MT
+                    option(value='NE') NE
+                    option(value='NV') NV
+                    option(value='NH') NH
+                    option(value='NJ') NJ
+                    option(value='NM') NM
+                    option(value='NY') NY
+                    option(value='NC') NC
+                    option(value='ND') ND
+                    option(value='OH') OH
+                    option(value='OK') OK
+                    option(value='OR') OR
+                    option(value='PA') PA
+                    option(value='RI') RI
+                    option(value='SC') SC
+                    option(value='SD') SD
+                    option(value='TN') TN
+                    option(value='TX') TX
+                    option(value='UT') UT
+                    option(value='VT') VT
+                    option(value='VA') VA
+                    option(value='WA' selected="selected") WA
+                    option(value='WV') WV
+                    option(value='WI') WI
+                    option(value='WY') WY
+                .form-group
+                  label(for="zip") Zip
+                  input.form-control(type="text" name="zip" id="zip")
             .panel.panel-primary
               .panel-heading URL
               .panel-body
                 .form-group
-                  label(for="link-url") Link URL
-                  input.form-control(type="text" name="link-url" id="link-url")
+                  label(for="linkUrl") Link URL
+                  input.form-control(type="text" name="linkUrl" id="linkUrl")
                 .form-group
-                  label(for="link-text") Link text
-                  input.form-control(type="text" name="link-text" id="link-text")
+                  label(for="linkText") Link text
+                  input.form-control(type="text" name="linkText" id="linkText")
             .panel.panel-primary
               .panel-heading Contact information
               .panel-body
                 .form-group
-                  label(for="contact-name") Name
-                  input.form-control(type="text" name="contact-name" id="contact-name")
+                  label(for="contactName") Name
+                  input.form-control(type="text" name="contactName" id="contactName")
                 .form-group
-                  label(for="contact-email") Email
-                  input.form-control(type="text" name="contact-email" id="contact-email")
+                  label(for="contactEmail") Email
+                  input.form-control(type="text" name="contactEmail" id="contactEmail")
                 .form-group
-                  label(for="contact-email") Phone
+                  label(for="contactPhone") Phone
                   .row
                     .col-sm-8
-                      input.form-control(type="text" name="contact-email" id="contact-email")
+                      input.form-control(type="text" name="contactPhone" id="contactPhone")
                     .col-sm-4
-                      select.form-control id="form_field_contact_phone_phone_type" name="contact_phone:phone_type"
+                      select.form-control(name="contactPhoneType" id="contactPhoneType")
                         option(value="") (Blank)
                         option(value="Home") Home
                         option(value="Cell") Cell
@@ -77,14 +131,14 @@ html(lang="en")
                         option(value="Fax") Fax
                         option(value="Other") Other
             .form-group
-              label(for="contact-dept") Host/Contact Department
-              input.form-control(type="text" name="contact-dept" id="contact-dept")
+              label(for="contactDept") Host/Contact Department
+              input.form-control(type="text" name="contactDept" id="contactDept")
             .form-group
-              label(for="feed-keywords") Feed Keyword(s)
-              input.form-control(type="text" name="feed-keywords" id="feed-keywords")
+              label(for="feedKeywords") Feed Keyword(s)
+              input.form-control(type="text" name="feedKeywords" id="feedKeywords")
             .checkbox.form-group
-              label(for="display-o-home-page" title="Display on Home Page")
-                input(type="checkbox" id="display-o-home-page" name="display-o-home-page")
+              label(for="displayOnHomePage" title="Display on Home Page")
+                input(type="checkbox" id="displayOnHomePage" name="displayOnHomePage")
                 | Display on KC home page
             .form-group.panel.panel-primary
               .panel-heading Categories
@@ -92,13 +146,13 @@ html(lang="en")
                 .row
                   .col-sm-6
                     .checkbox
-                      label(for="category-arts-culture" title="Arts and Culture")
-                      input(type="checkbox" id="category-arts-culture" name="category-arts_culture")
-                      | Arts and culture
+                      label(for="categoryArtsCulture" title="Arts and Culture")
+                        input(type="checkbox" id="categoryArtsCulture" name="categoryArtsCulture")
+                        | Arts and culture
                     .checkbox
-                      label(for="category-best-starts" title="Best Starts for Kids")
-                      input(type="checkbox" id="category-best-starts" name="category-best-starts")
-                      | Best Starts for Kids
+                      label(for="categoryBestStarts" title="Best Starts for Kids")
+                        input(type="checkbox" id="categoryBestStarts" name="categoryBestStarts")
+                        | Best Starts for Kids
             button.btn.btn-primary(type="submit") Add to calendar
     script(src="//code.jquery.com/jquery-3.1.1.slim.min.js")
     script(type="text/javascript" src="/bootstrap/dist/js/bootstrap.min.js")
