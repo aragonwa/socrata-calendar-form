@@ -1,10 +1,10 @@
 var router = require('express').Router();
-var config = require('../config/config.json');
 var soda = require('soda-js');
-var sodaOpts = config.socrata;
-var producer = new soda.Producer('data.kingcounty.gov', sodaOpts);
+//var sodaOpts = config.socrata;
+//var producer = new soda.Producer('data.kingcounty.gov', sodaOpts);
 
-var routes = function () {
+var routes = function (config) {
+  var producer = new soda.Producer('data.kingcounty.gov', config.socrata);
   router.route('/')
     .get(function (req, res) {
       res.render('index');
