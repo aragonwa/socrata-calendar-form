@@ -8,9 +8,9 @@ gulp.task('default', function () {
     ext: 'js pug',
     env: {
       PORT: 3000,
-      SOCRATA_USER_NAME: "webteam@kingcounty.gov",
-      SOCRATA_USER_PASSWORD : "L7SdxOPRKIkx",
-      SOCRATA_API_TOKEN : "HUhrupu6tx5TyuUqQ0RYPcdDm"
+      SOCRATA_USER_NAME: "XXXXXXXXXXXXXX",
+      SOCRATA_USER_PASSWORD : "XXXXXXXXXX",
+      SOCRATA_API_TOKEN : "XXXXXXXXXXXXXXXX"
     },
     ignore: ['./node_modules/**', 'gulpfile.js']
   })
