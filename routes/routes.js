@@ -12,6 +12,9 @@ var routes = function (config) {
     .post(function (req, res) {
       var body = req.body;
       body.displayOnHomePage = (body.displayOnHomePage) ? true : false;
+      body.categoryArtsCulture = (body.categoryArtsCulture) ? true : false;
+      body.categoryBestStarts = (body.categoryBestStarts) ? true : false;
+
       var data = {
         start_time: body.startTimeDate,
         end_time: body.endTimeDate,
@@ -35,7 +38,7 @@ var routes = function (config) {
         home_page_y_n: body.displayOnHomePage,
         arts_culture: body.categoryArtsCulture,
         best_starts_for_kids: body.categoryBestStarts,
-        business: '',
+        business: body.categoryBusiness,
         closure: '',
         council: '',
         courts: '',
