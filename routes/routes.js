@@ -125,8 +125,13 @@ var routes = function (config) {
         .add(data)
           .on('success', function(row) { console.log(row);  })
           .on('error', function(error) { console.error(error); })
-      res.redirect('/');
+      res.redirect('/thanks');
     });
+
+    router.route('/thanks')
+    .get(function (req, res) {
+      res.render('thanks');
+    })
   return router;
 };
 
