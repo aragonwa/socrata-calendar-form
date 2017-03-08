@@ -120,7 +120,6 @@ var routes = function (config) {
         tac_meeting: body.categoryTAC
       };
       // Push to Socrata
-      console.log(data)
       producer.operation()
         .withDataset('w9jp-gibf')
         .add(data)
