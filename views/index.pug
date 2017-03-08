@@ -2,15 +2,18 @@ doctype html
 html(lang="en")
   head
     meta(charset="utf-8")
-    meta(name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no")
+    meta(name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no")  
+    link(rel="stylesheet" href="/widgEditor_1/css/main.css")
+    link(rel="stylesheet" href="/widgEditor_1/css/widgEditor.css")
     link(rel="stylesheet" href="/bootstrap/dist/css/bootstrap.min.css")
     link(rel="stylesheet" href="/font-awesome/css/font-awesome.css")
     link(rel="stylesheet" href="/eonasdan-bootstrap-datetimepicker/build/css/bootstrap-datetimepicker.css")
     title King County Master Calendar Input
-     <!--[if lt IE 9]>
-      script(src="//oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js")
-      script(src="//oss.maxcdn.com/respond/1.4.2/respond.min.js")
-    <![endif]-->
+    //-  <!--[if lt IE 9]>
+    script(src="//oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js")
+    script(src="//oss.maxcdn.com/respond/1.4.2/respond.min.js")
+    script(src="/widgEditor_1/scripts/widgEditor.js")
+    //- <![endif]-->
   body
     .container
       .row
@@ -29,7 +32,7 @@ html(lang="en")
               textarea.form-control(type="text" name="eventName" id="eventName")
             .form-group
               label(for="eventDescription") Event description/details
-              textarea.form-control(type="text" name="eventDescription" id="eventDescription")
+              textarea.form-control(type="text" name="eventDescription" id="eventDescription" class="widgEditor")
             .panel.panel-primary
               .panel-heading Location
               .panel-body
@@ -157,6 +160,165 @@ html(lang="en")
                       label(for="categoryBusiness" title="Business")
                         input(type="checkbox" id="categoryBusiness" name="categoryBusiness")
                         | Business
+                    .checkbox
+                      label(for="categoryClosure" title="Closure")
+                        input(type="checkbox" id="categoryClosure" name="categoryClosure")
+                        | Closure
+                    .checkbox
+                      label(for="categoryCouncil" title="Council")
+                        input(type="checkbox" id="categoryCouncil" name="categoryCouncil")
+                        | Council
+                    .checkbox
+                      label(for="categoryCourts" title="Courts")
+                        input(type="checkbox" id="categoryCourts" name="categoryCourts")
+                        | Courts
+                    .checkbox
+                      label(for="categoryElections" title="Elections")
+                        input(type="checkbox" id="categoryElections" name="categoryElections")
+                        | Elections
+                    .checkbox
+                      label(for="categoryEmergency" title="Emergency")
+                        input(type="checkbox" id="categoryEmergency" name="categoryEmergency")
+                        | Emergency
+                    .checkbox
+                      label(for="categoryEmployees" title="Employees")
+                        input(type="checkbox" id="categoryEmployees" name="categoryEmployees")
+                        | Employees
+                    .checkbox
+                      label(for="categoryEnvironment" title="Environment")
+                        input(type="checkbox" id="categoryEnvironment" name="categoryEnvironment")
+                        | Environment
+                    .checkbox
+                      label(for="categoryEvents" title="Events")
+                        input(type="checkbox" id="categoryEvents" name="categoryEvents")
+                        | Events
+                    .checkbox
+                      label(for="categoryExecutive" title="Executive")
+                        input(type="checkbox" id="categoryExecutive" name="categoryExecutive")
+                        | Executive
+                    .checkbox
+                      label(for="categoryHealth" title="Health")
+                        input(type="checkbox" id="categoryHealth" name="categoryHealth")
+                        | Health
+                    .checkbox
+                      label(for="categoryJails" title="Jails")
+                        input(type="checkbox" id="categoryJails" name="categoryJails")
+                        | Jails
+                    .checkbox
+                      label(for="categoryLicenses" title="Licenses")
+                        input(type="checkbox" id="categoryLicenses" name="categoryLicenses")
+                        | Licenses
+                    .checkbox
+                      label(for="categoryNews" title="News")
+                        input(type="checkbox" id="categoryNews" name="categoryNews")
+                        | News
+                    .checkbox
+                      label(for="categoryOperations" title="Operations")
+                        input(type="checkbox" id="categoryOperations" name="categoryOperations")
+                        | Operations
+                    .checkbox
+                      label(for="categoryParks" title="Parks")
+                        input(type="checkbox" id="categoryParks" name="categoryParks")
+                        | Parks
+                    .checkbox
+                      label(for="categoryPermits" title="Permits")
+                        input(type="checkbox" id="categoryPermits" name="categoryPermits")
+                        | Permits
+                    .checkbox
+                      label(for="categoryPets" title="Pets")
+                        input(type="checkbox" id="categoryPets" name="categoryPets")
+                        | Pets
+                    .checkbox
+                      label(for="categoryProperty" title="Property")
+                        input(type="checkbox" id="categoryProperty" name="categoryProperty")
+                        | Property
+                    .checkbox
+                      label(for="categoryRecreation" title="Recreation")
+                        input(type="checkbox" id="categoryRecreation" name="categoryRecreation")
+                        | Recreation
+                  .col-sm-6
+                    .checkbox
+                      label(for="categoryRecyclingTrash" title="Recycling and trash")
+                        input(type="checkbox" id="categoryRecyclingTrash" name="categoryRecyclingTrash")
+                        | Recycling and trash
+                    div(style="margin-left: 40px")
+                      .checkbox
+                        label(for="categorySolidWasteHome" title="Solid Waste home page")
+                          input(type="checkbox" id="categorySolidWasteHome" name="categorySolidWasteHome")
+                          | Solid Waste home page
+                      .checkbox
+                        label(for="categorySolidWasteAdvisory" title="Solid Waste Advisory Committee")
+                          input(type="checkbox" id="categorySolidWasteAdvisory" name="categorySolidWasteAdvisory")
+                          | Solid Waste Advisory Committee
+                      .checkbox
+                        label(for="categorySolidWasteEcoConsumer" title="EcoConsumer")
+                          input(type="checkbox" id="categorySolidWasteEcoConsumer" name="categorySolidWasteEcoConsumer")
+                          | EcoConsumer
+                      .checkbox
+                        label(for="categorySolidWasteFacilities" title="Solid Waste Facilities")
+                          input(type="checkbox" id="categorySolidWasteFacilities" name="categorySolidWasteFacilities")
+                          | Solid Waste facilities
+                      .checkbox
+                        label(for="categorySolidWasteGreenTools" title="Green Tools")
+                          input(type="checkbox" id="categorySolidWasteGreenTools" name="categorySolidWasteGreenTools")
+                          | Green Tools
+                      .checkbox
+                        label(for="categorySolidWasteRecyclingEvents" title="Recycling Events")
+                          input(type="checkbox" id="categorySolidWasteRecyclingEvents" name="categorySolidWasteRecyclingEvents")
+                          | Recycling Events
+                      .checkbox
+                        label(for="categorySolidWasteWastemobile" title="Wastemobile")
+                          input(type="checkbox" id="categorySolidWasteWastemobile" name="categorySolidWasteWastemobile")
+                          | Wastemobile
+                    .checkbox
+                      label(for="categoryRural" title="Rural")
+                        input(type="checkbox" id="categoryRural" name="categoryRural")
+                        | Rural
+                    .checkbox
+                      label(for="categorySafety" title="Safety")
+                        input(type="checkbox" id="categorySafety" name="categorySafety")
+                        | Safety
+                    .checkbox
+                      label(for="categorySheriff" title="Sheriff")
+                        input(type="checkbox" id="categorySheriff" name="categorySheriff")
+                        | Sheriff
+                    .checkbox
+                      label(for="categorySocialServices" title="Social Services")
+                        input(type="checkbox" id="categorySocialServices" name="categorySocialServices")
+                        | Social Services
+                    .checkbox
+                      label(for="categoryTransportation" title="Transportation")
+                        input(type="checkbox" id="categoryTransportation" name="categoryTransportation")
+                        | Transportation
+                    div(style="margin-left: 40px")
+                      .checkbox
+                        label(for="categoryAirport" title="Airport")
+                          input(type="checkbox" id="categoryAirport" name="categoryAirport")
+                          | Airport
+                      .checkbox
+                        label(for="categoryFleetAuctions" title="Fleet Auctions")
+                          input(type="checkbox" id="categoryFleetAuctions" name="categoryFleetAuctions")
+                          | Fleet Auctions
+                      .checkbox
+                        label(for="categoryMetro" title="Metro")
+                          input(type="checkbox" id="categoryMetro" name="categoryMetro")
+                          | Metro                      
+                      .checkbox
+                        label(for="categoryRoads" title="Roads")
+                          input(type="checkbox" id="categoryRoads" name="categoryRoads")
+                          | Roads
+                      .checkbox
+                        label(for="categoryWaterTaxi" title="Water Taxi")
+                          input(type="checkbox" id="categoryWaterTaxi" name="categoryWaterTaxi")
+                          | Water Taxi
+                    .checkbox
+                      label(for="categoryVolunteer" title="Volunteer")
+                        input(type="checkbox" id="categoryVolunteer" name="categoryVolunteer")
+                        | Volunteer
+                    .checkbox
+                      label(for="categoryTAC" title="TAC")
+                        input(type="checkbox" id="categoryTAC" name="categoryTAC")
+                        | TAC                    
             button.btn.btn-primary(type="submit") Add to calendar
     script(src="//code.jquery.com/jquery-3.1.1.slim.min.js")
     script(type="text/javascript" src="/bootstrap/dist/js/bootstrap.min.js")
