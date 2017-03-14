@@ -1,12 +1,22 @@
-var router = require('express').Router();
-var soda = require('soda-js');
-//var sodaOpts = config.socrata;
-//var producer = new soda.Producer('data.kingcounty.gov', sodaOpts);
+const router = require('express').Router();
+const soda = require('soda-js');
+const session = require('express-session');
 
-var routes = function (config) {
+var auth = function(req, res, next) {
+  if (req.session.user)
+    return next();
+  else {
+    res.statusCode = 401;
+    res.render('login')
+    return res;
+  }
+};
+
+var routes = function (config) { 
   var producer = new soda.Producer('data.kingcounty.gov', config.socrata);
   router.route('/')
-    .get(function (req, res) {
+    //.get(Authentication.BasicAuthentication, function (req, res) {
+    .get(auth, function (req, res) {
       res.render('index');
     })
     .post(function (req, res) {
@@ -69,12 +79,28 @@ var routes = function (config) {
       };
       // Push to Socrata
       producer.operation()
-        .withDataset('w9jp-gibf')
+        .withDataset(config.socrata.dataset)
         .add(data)
           .on('success', function(row) { console.log(row);  })
           .on('error', function(error) { console.error(error); })
       res.redirect('/');
     });
+    router.get('/error', function (req, res) {
+      res.render('error');
+    })
+    router.post('/login', (req, res) => {
+      var body = req.body;
+      var user = body.user;
+      var pass = body.pass;
+      if (user === config.login.user || pass === config.login.pass) {
+        req.session.user = "king_county";
+        req.session.admin = true;
+        res.redirect('/');
+      } else {
+        res.redirect('error');
+      }
+    });
+
   return router;
 };
 
