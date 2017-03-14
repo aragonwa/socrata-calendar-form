@@ -22,5 +22,7 @@
     "pug": "^2.0.0-beta6",
     "soda-js": "^0.2.2"
   },
-  "devDependencies": {}
+  "devDependencies": {
+    "morgan": "^1.8.1"
+  }
 }

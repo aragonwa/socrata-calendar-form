@@ -1,11 +1,13 @@
 const express = require('express');
 const bodyParser = require('body-parser');
 const app = express();
+app.use(require('morgan')('dev'));
 const session = require('express-session');
 
 const creds = (process.env.NODE_ENV === 'production') ? require('./config/config.prod.js') : require('./config/config.dev.js');
 
 const port = process.env.PORT || 3000;
+
 
 app.use(session({
   secret: creds.session.secret,
