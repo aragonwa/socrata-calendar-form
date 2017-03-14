@@ -3,7 +3,7 @@ const bodyParser = require('body-parser');
 const app = express();
 const session = require('express-session');
 
-const creds = (process.env.NODE_ENV === 'PROD') ? require('./config/config.prod.js') : require('./config/config.dev.js');
+const creds = (process.env.NODE_ENV === 'production') ? require('./config/config.prod.js') : require('./config/config.dev.js');
 
 const port = process.env.PORT || 3000;
 
