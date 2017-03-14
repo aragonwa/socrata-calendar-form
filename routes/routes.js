@@ -2,7 +2,7 @@ const router = require('express').Router();
 const soda = require('soda-js');
 const session = require('express-session');
 
-var auth = function(req, res, next) {
+var auth = (req, res, next) => {
   if (req.session.user)
     return next();
   else {
@@ -12,14 +12,13 @@ var auth = function(req, res, next) {
   }
 };
 
-var routes = function (config) { 
+var routes = config => { 
   var producer = new soda.Producer('data.kingcounty.gov', config.socrata);
   router.route('/')
-    //.get(Authentication.BasicAuthentication, function (req, res) {
-    .get(auth, function (req, res) {
+    .get(auth,  (req, res) =>{
       res.render('index');
     })
-    .post(function (req, res) {
+    .post( (req, res) => {
       var body = req.body;
       body.displayOnHomePage = (body.displayOnHomePage) ? true : false;
       body.categoryAirport = (body.categoryAirport) ? true : false;
@@ -133,23 +132,24 @@ var routes = function (config) {
       producer.operation()
         .withDataset(config.socrata.dataset)
         .add(data)
-          .on('success', function(row) { console.log(row);  })
+          .on('success', (row) => { console.log(row);  })
           .on('error', function(error) { console.error(error); })
       res.redirect('/thanks');
     });
-    router.get('/error', function (req, res) {
+    router.get('/error', (req, res) => {
+      res.statusCode = 401;
       res.render('error');
     })
-    router.get('/thanks', function (req, res) {
+    router.get('/thanks', (req, res) => {
       res.render('thanks');
     })
     router.post('/login', (req, res) => {
       var body = req.body;
       var user = body.user;
       var pass = body.pass;
-      if (user === config.login.user || pass === config.login.pass) {
+      if (user === config.login.user && pass === config.login.pass) {
         req.session.user = "king_county";
-        req.session.admin = true;
+        // req.session.admin = true;
         res.redirect('/');
       } else {
         res.redirect('error');
