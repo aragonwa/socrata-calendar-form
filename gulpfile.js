@@ -1,6 +1,6 @@
 var gulp = require('gulp');
 var nodemon = require('gulp-nodemon');
-var creds = require('config/config')();
+const creds = require('./config/config.prod.js');
 
 gulp.task('default', function () {
   nodemon({
@@ -8,9 +8,9 @@ gulp.task('default', function () {
     ext: 'js pug',
     env: {
       PORT: 3000,
-      SOCRATA_USER_NAME: "XXXXXXXXXXXXXX",
-      SOCRATA_USER_PASSWORD : "XXXXXXXXXX",
-      SOCRATA_API_TOKEN : "XXXXXXXXXXXXXXXX"
+      SOCRATA_USER_NAME: creds.socrata.username,
+      SOCRATA_USER_PASSWORD : creds.socrata.password,
+      SOCRATA_API_TOKEN : creds.socrata.apiToken
     },
     ignore: ['./node_modules/**', 'gulpfile.js']
   })
