@@ -8,7 +8,6 @@ const creds = (process.env.NODE_ENV === 'production') ? require('./config/config
 
 const port = process.env.PORT || 3000;
 
-
 app.use(session({
   secret: creds.session.secret,
   resave: false, // don't save session if unmodified
