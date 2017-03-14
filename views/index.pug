@@ -3,17 +3,20 @@ html(lang="en")
   head
     meta(charset="utf-8")
     meta(name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no")  
-    link(rel="stylesheet" href="/widgEditor_1/css/main.css")
-    link(rel="stylesheet" href="/widgEditor_1/css/widgEditor.css")
     link(rel="stylesheet" href="/bootstrap/dist/css/bootstrap.min.css")
     link(rel="stylesheet" href="/font-awesome/css/font-awesome.css")
     link(rel="stylesheet" href="/eonasdan-bootstrap-datetimepicker/build/css/bootstrap-datetimepicker.css")
+    link(rel="stylesheet" href="/bootstrap3-wysihtml5-bower/dist/bootstrap3-wysihtml5.min.css")
     title King County Master Calendar Input
     //-  <!--[if lt IE 9]>
     script(src="//oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js")
     script(src="//oss.maxcdn.com/respond/1.4.2/respond.min.js")
-    script(src="/widgEditor_1/scripts/widgEditor.js")
     //- <![endif]-->
+    style.
+      a[data-wysihtml5-command="Outdent"],
+      a[data-wysihtml5-command="Indent"]
+        { display:none !important; }
+
   body
     .container
       .row
@@ -32,7 +35,7 @@ html(lang="en")
               textarea.form-control(type="text" name="eventName" id="eventName")
             .form-group
               label(for="eventDescription") Event description/details
-              textarea.form-control(type="text" name="eventDescription" id="eventDescription" class="widgEditor")
+              textarea.form-control(type="text" name="eventDescription" id="eventDescription")
             .panel.panel-primary
               .panel-heading Location
               .panel-body
@@ -324,6 +327,10 @@ html(lang="en")
     script(type="text/javascript" src="/bootstrap/dist/js/bootstrap.min.js")
     script(type="text/javascript" src="/moment/min/moment.min.js")
     script(type="text/javascript" src="/eonasdan-bootstrap-datetimepicker/build/js/bootstrap-datetimepicker.min.js")
+    script(type="text/javascript" src="/bootstrap3-wysihtml5-bower/dist/bootstrap3-wysihtml5.all.min.js")
+    script(type="text/javascript" src="/bootstrap3-wysihtml5-bower/dist/bootstrap3-wysihtml5.min.js")
+    //script(type="text/javascript" src="/wysihtml5x/dist/wysihtml5x-toolbar.min.js")
+    // script(type="text/javascript" src="/bootstrap3-wysihtml5-bower/parser_rules/advanced.js")
     script.
        $(function () {
             $('.datetimepicker').datetimepicker({
@@ -335,4 +342,15 @@ html(lang="en")
                 }
             });
         });
-    
+       $(function () {
+          $('#eventDescription').wysihtml5({
+             
+             toolbar: {
+              fa: true,
+              "html": true,
+              "blockquote": false
+            }
+          });
+        });
+        
+       
