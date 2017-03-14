@@ -1,8 +1,12 @@
 const express = require('express');
 const bodyParser = require('body-parser');
 const app = express();
-app.use(require('morgan')('dev'));
+
 const session = require('express-session');
+
+if(process.env.NODE_ENV !== 'production') {
+  app.use(require('morgan')('dev'));
+}
 
 const creds = (process.env.NODE_ENV === 'production') ? require('./config/config.prod.js') : require('./config/config.dev.js');
 
