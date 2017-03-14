@@ -7,10 +7,10 @@ html(lang="en")
     link(rel="stylesheet" href="/font-awesome/css/font-awesome.css")
     link(rel="stylesheet" href="/eonasdan-bootstrap-datetimepicker/build/css/bootstrap-datetimepicker.css")
     title King County Master Calendar Input
-     <!--[if lt IE 9]>
-      script(src="//oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js")
-      script(src="//oss.maxcdn.com/respond/1.4.2/respond.min.js")
-    <![endif]-->
+    //[if lt IE 9]
+    script(src="//oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js")
+    script(src="//oss.maxcdn.com/respond/1.4.2/respond.min.js")
+    //[endif]
   body
     .container
       .row
@@ -124,7 +124,7 @@ html(lang="en")
                       input.form-control(type="text" name="contactPhone" id="contactPhone")
                     .col-sm-4
                       select.form-control(name="contactPhoneType" id="contactPhoneType")
-                        option(value="") (Blank)
+                        option(value="") (select)
                         option(value="Home") Home
                         option(value="Cell") Cell
                         option(value="Work") Work
@@ -159,14 +159,13 @@ html(lang="en")
     script(type="text/javascript" src="/moment/min/moment.min.js")
     script(type="text/javascript" src="/eonasdan-bootstrap-datetimepicker/build/js/bootstrap-datetimepicker.min.js")
     script.
-       $(function () {
-            $('.datetimepicker').datetimepicker({
-              icons: {
-                time: "fa fa-clock-o",
-                date: "fa fa-calendar",
-                up: "fa fa-arrow-up",
-                down: "fa fa-arrow-down"
-                }
-            });
+      $(function () {
+        $('.datetimepicker').datetimepicker({
+          icons: {
+            time: "fa fa-clock-o",
+            date: "fa fa-calendar",
+            up: "fa fa-arrow-up",
+            down: "fa fa-arrow-down"
+          }
         });
-    
+      });
