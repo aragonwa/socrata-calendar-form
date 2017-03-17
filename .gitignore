@@ -27,7 +27,7 @@ build/Release
 node_modules
 
 # bower_files
-bower_components/
+bower_components
 
 #folders
 config/config.dev.js
