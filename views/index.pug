@@ -22,16 +22,19 @@ html(lang="en")
         .col-sm-12
           h1 King County Master Calendar Input
         .col-sm-12(style="margin-bottom:40px")
-          form(action="/" method="post" id="calendar-form")
+          form(action="/" method="post" id="calendar-form" data-toggle="validator")
             .form-group
               label(for="startDateTime") Start date/time
-              input.form-control.datetimepicker(type="text" name="startTimeDate" id="startTimeDate")
+              input.form-control.datetimepicker(type="text" name="startTimeDate" id="startTimeDate" required)
+              .help-block.with-errors
             .form-group
               label(for="endTimeDate") End date/time
-              input.form-control.datetimepicker(type="text" name="endTimeDate" id="endTimeDate")
+              input.form-control.datetimepicker(type="text" name="endTimeDate" id="endTimeDate" required)
+              .help-block.with-errors
             .form-group
               label(for="eventName") Event name
-              textarea.form-control(type="text" name="eventName" id="eventName")
+              textarea.form-control(type="text" name="eventName" id="eventName" required)
+              .help-block.with-errors
             .form-group
               label(for="eventDescription") Event description/details
               textarea.form-control(type="text" name="eventDescription" id="eventDescription")
@@ -109,10 +112,12 @@ html(lang="en")
               .panel-body
                 .form-group
                   label(for="linkUrl") Link URL
-                  input.form-control(type="text" name="linkUrl" id="linkUrl")
+                  input.form-control(type="text" name="linkUrl" id="linkUrl" required)
+                  .help-block.with-errors
                 .form-group
                   label(for="linkText") Link text
-                  input.form-control(type="text" name="linkText" id="linkText")
+                  input.form-control(type="text" name="linkText" id="linkText" required)
+                  .help-block.with-errors
             .panel.panel-primary
               .panel-heading Contact information
               .panel-body
@@ -328,8 +333,8 @@ html(lang="en")
     script(type="text/javascript" src="/eonasdan-bootstrap-datetimepicker/build/js/bootstrap-datetimepicker.min.js")
     script(type="text/javascript" src="/bootstrap3-wysihtml5-bower/dist/bootstrap3-wysihtml5.all.min.js")
     script(type="text/javascript" src="/bootstrap3-wysihtml5-bower/dist/bootstrap3-wysihtml5.min.js")
-    //script(type="text/javascript" src="/wysihtml5x/dist/wysihtml5x-toolbar.min.js")
-    // script(type="text/javascript" src="/bootstrap3-wysihtml5-bower/parser_rules/advanced.js")
+    script(type="text/javascript" src="/bootstrap3-wysihtml5-bower/dist/validator.min.js")
+    script(type="text/javascript" src="/bootstrap-validator/dist/validator.min.js")
     script.
       $(function () {
         $('.datetimepicker').datetimepicker({
