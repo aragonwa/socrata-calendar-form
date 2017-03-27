@@ -80,7 +80,7 @@ var routes = config => {
         url: body.linkUrl,
         contact_name: body.contactName,
         contact_email: body.contactEmail,
-        contact_phone: body.contactPhoneType,
+        contact_phone: body.contactPhone + ":" + body.contactPhoneType,
         host_contact_department: body.contactDept,
         feed_keyword_s: body.feedKeywords,
         home_page_y_n: body.displayOnHomePage,
