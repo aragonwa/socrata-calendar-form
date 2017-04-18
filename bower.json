@@ -18,7 +18,7 @@
     "eonasdan-bootstrap-datetimepicker": "^4.17.44",
     "font-awesome": "fontawesome#^4.7.0",
     "bootstrap": "bootstrap#^3.3.7",
-    "bootstrap3-wysihtml5-bower": "^0.3.3",
-    "bootstrap-validator": "^0.11.9"
+    "bootstrap-validator": "^0.11.9",
+    "trumbowyg": "^2.5.1"
   }
 }

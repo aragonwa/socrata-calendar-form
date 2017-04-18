@@ -6,7 +6,7 @@ html(lang="en")
     link(rel="stylesheet" href="/bootstrap/dist/css/bootstrap.min.css")
     link(rel="stylesheet" href="/font-awesome/css/font-awesome.css")
     link(rel="stylesheet" href="/eonasdan-bootstrap-datetimepicker/build/css/bootstrap-datetimepicker.css")
-    link(rel="stylesheet" href="/bootstrap3-wysihtml5-bower/dist/bootstrap3-wysihtml5.min.css")
+    link(rel="stylesheet" href="/trumbowyg/dist/ui/trumbowyg.min.css")
     title King County Master Calendar Input
     //[if lt IE 9]
     script(src="//oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js")
@@ -327,13 +327,11 @@ html(lang="en")
                         input(type="checkbox" id="categoryTAC" name="categoryTAC")
                         | TAC                    
             button.btn.btn-primary(type="submit") Add to calendar
-    script(src="//code.jquery.com/jquery-3.1.1.slim.min.js")
+    script(src="//code.jquery.com/jquery-3.1.1.min.js")
     script(type="text/javascript" src="/bootstrap/dist/js/bootstrap.min.js")
     script(type="text/javascript" src="/moment/min/moment.min.js")
     script(type="text/javascript" src="/eonasdan-bootstrap-datetimepicker/build/js/bootstrap-datetimepicker.min.js")
-    script(type="text/javascript" src="/bootstrap3-wysihtml5-bower/dist/bootstrap3-wysihtml5.all.min.js")
-    script(type="text/javascript" src="/bootstrap3-wysihtml5-bower/dist/bootstrap3-wysihtml5.min.js")
-    script(type="text/javascript" src="/bootstrap3-wysihtml5-bower/dist/validator.min.js")
+    script(type="text/javascript" src="/trumbowyg/dist/trumbowyg.min.js")
     script(type="text/javascript" src="/bootstrap-validator/dist/validator.min.js")
     script.
       $(function () {
@@ -345,12 +343,6 @@ html(lang="en")
             down: "fa fa-arrow-down"
           }
         });
-        $('#eventDescription').wysihtml5({
-            toolbar: {
-            fa: true,
-            "html": true,
-            "blockquote": false
-          }
-        });
+        $('#eventDescription').trumbowyg();
       });
 
