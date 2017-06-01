@@ -19,10 +19,14 @@
     "express-session": "^1.15.1",
     "gulp": "^3.9.1",
     "gulp-nodemon": "^2.2.1",
+    "passport": "^0.3.2",
+    "passport-oauth": "^1.0.0",
     "pug": "^2.0.0-beta6",
+    "simple-oauth2": "^1.2.0",
     "soda-js": "^0.2.2"
   },
   "devDependencies": {
+    "grant-express": "^3.7.2",
     "morgan": "^1.8.1"
   }
 }
