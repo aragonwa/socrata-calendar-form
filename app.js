@@ -8,10 +8,10 @@ OAuth2Strategy = require('passport-oauth').OAuth2Strategy;
 passport.use('Socrata', new OAuth2Strategy({
     authorizationURL: 'https://data.kingcounty.gov/oauth/authorize',
     tokenURL: 'https://data.kingcounty.gov/oauth/access_token',
-    userAuthorizationURL: 'https://kc-calendar.heroku.com/oauth/authorize',
+    userAuthorizationURL: 'https://kc-calendar.herokuapp.com//oauth/authorize',
     clientID: 'HUhrupu6tx5TyuUqQ0RYPcdDm',
     clientSecret: 'uwpxW9vV-8ULqdf823ATu33UN6sLmDmGAWxu',
-    callbackURL: 'https://kc-calendar.heroku.com/auth/socrata/callback'
+    callbackURL: 'https://kc-calendar.herokuapp.com/auth/socrata/callback'
   },
   function(token, tokenSecret, profile, done) {
     console.log(profile);
