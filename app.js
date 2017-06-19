@@ -45,15 +45,7 @@ app.use(session({ secret: 'very secret'}));
 //   // https://soda.demo.socrata.com/oauth/authorize?client_id=HUhrupu6tx5TyuUqQ0RYPcdDm&response_type=code &redirect_uri=http:localhost:3000/handle_socrata_callback
 // })
 
-app.get('/auth/provider', passport.authenticate('Socrata'));
 
-app.get('/auth/example/callback',
-  // passport.authenticate('oauth2', { failureRedirect: '/login' }),
-  function(req, res) {
-    // Successful authentication, redirect home.
-    // res.redirect('/');
-    res.send('Hello World!')
-  });
 // app.get('/handle_socrata_callback', function (req, res) {
 //   console.log(req)
 //   res.end(JSON.stringify(req, null, 2))
@@ -106,7 +98,19 @@ app.set('view engine', 'pug');
 app.use(express.static('bower_components'));
 app.use(bodyParser.urlencoded({ extended: false }));
 
+app.get('/auth/socrata', passport.authenticate('Socrata'));
+
+app.get('/auth/example/callback',
+  // passport.authenticate('oauth2', { failureRedirect: '/login' }),
+  function(req, res) {
+    // Successful authentication, redirect home.
+    // res.redirect('/');
+    res.send('Hello World!')
+  });
+
 app.use('/', require('./routes/routes')(creds));
+
+
 
 app.listen(port, function () {
   console.log('Running on port: ' + port);
