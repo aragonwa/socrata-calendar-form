@@ -83,7 +83,7 @@ var routes = config => {
         contact_phone: body.contactPhone + ":" + body.contactPhoneType,
         host_contact_department: body.contactDept,
         feed_keyword_s: body.feedKeywords,
-        home_page_y_n: body.displayOnHomePage,
+        display_on_kc_home_page: body.displayOnHomePage,
         airport: body.categoryAirport,
         arts_culture: body.categoryArtsCulture,
         best_starts_for_kids: body.categoryBestStarts,
