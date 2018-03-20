@@ -6,6 +6,7 @@
   "scripts": {
     "dev": "gulp default",
     "start": "node app.js",
+    "localtunnel": "lt --port 3000 --subdomain kcalex",
     "postinstall": "bower install"
   },
   "author": "Alex Aragon <Alex.Aragon@kingcounty.gov>",
@@ -27,6 +28,7 @@
   },
   "devDependencies": {
     "grant-express": "^3.7.2",
+    "localtunnel": "^1.8.3",
     "morgan": "^1.8.1"
   }
 }
