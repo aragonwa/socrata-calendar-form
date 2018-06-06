@@ -132,9 +132,15 @@ var routes = config => {
       producer.operation()
         .withDataset(config.socrata.dataset)
         .add(data)
-          .on('success', (row) => { console.log(row);  })
-          .on('error', function(error) { console.error(error); })
-      res.redirect('/thanks');
+          .on('success', (row) => { 
+            console.log(row); 
+            res.redirect('/thanks');
+          })
+          .on('error', function(error) { 
+            console.error(error); 
+            res.redirect('/error');
+          })
+      
     });
     router.get('/error', (req, res) => {
       res.statusCode = 401;
