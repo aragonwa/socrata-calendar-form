@@ -12,13 +12,13 @@ var auth = (req, res, next) => {
   }
 };
 
-var routes = config => { 
+var routes = config => {
   var producer = new soda.Producer('data.kingcounty.gov', config.socrata);
   router.route('/')
-    .get(auth,  (req, res) =>{
+    .get(auth, (req, res) => {
       res.render('index');
     })
-    .post( (req, res) => {
+    .post((req, res) => {
       var body = req.body;
       body.displayOnHomePage = (body.displayOnHomePage) ? true : false;
       body.categoryAirport = (body.categoryAirport) ? true : false;
@@ -71,8 +71,8 @@ var routes = config => {
         location_name: body.locationName,
         location: {
           human_address: {
-            address:body.street,
-            city:body.city,
+            address: body.street,
+            city: body.city,
             state: body.state,
             zip: body.zip
           }
@@ -80,7 +80,7 @@ var routes = config => {
         url: body.linkUrl,
         contact_name: body.contactName,
         contact_email: body.contactEmail,
-        contact_phone: body.contactPhone + ":" + body.contactPhoneType,
+        contact_phone: body.contactPhone,
         host_contact_department: body.contactDept,
         feed_keyword_s: body.feedKeywords,
         display_on_kc_home_page: body.displayOnHomePage,
@@ -132,35 +132,35 @@ var routes = config => {
       producer.operation()
         .withDataset(config.socrata.dataset)
         .add(data)
-          .on('success', (row) => { 
-            console.log(row); 
-            res.redirect('/thanks');
-          })
-          .on('error', function(error) { 
-            console.error(error); 
-            res.redirect('/error');
-          })
-      
+        .on('success', (row) => {
+          console.log(row);
+          res.redirect('/thanks');
+        })
+        .on('error', function (error) {
+          console.error(error);
+          res.redirect('/error');
+        })
+
     });
-    router.get('/error', (req, res) => {
-      res.statusCode = 401;
-      res.render('error');
-    })
-    router.get('/thanks', (req, res) => {
-      res.render('thanks');
-    })
-    router.post('/login', (req, res) => {
-      var body = req.body;
-      var user = body.user;
-      var pass = body.pass;
-      if (user === config.login.user && pass === config.login.pass) {
-        req.session.user = "king_county";
-        // req.session.admin = true;
-        res.redirect('/');
-      } else {
-        res.redirect('error');
-      }
-    });
+  router.get('/error', (req, res) => {
+    res.statusCode = 401;
+    res.render('error');
+  })
+  router.get('/thanks', (req, res) => {
+    res.render('thanks');
+  })
+  router.post('/login', (req, res) => {
+    var body = req.body;
+    var user = body.user;
+    var pass = body.pass;
+    if (user === config.login.user && pass === config.login.pass) {
+      req.session.user = "king_county";
+      // req.session.admin = true;
+      res.redirect('/');
+    } else {
+      res.redirect('error');
+    }
+  });
 
   return router;
 };
