@@ -6,7 +6,7 @@
   "scripts": {
     "dev": "gulp default",
     "start": "node app.js",
-    "localtunnel": "lt --port 3000 --subdomain kcalex",
+    "lt": "lt --port 3000 --subdomain kcalexx",
     "postinstall": "bower install"
   },
   "author": "Alex Aragon <Alex.Aragon@kingcounty.gov>",
@@ -23,6 +23,7 @@
     "passport": "^0.3.2",
     "passport-oauth": "^1.0.0",
     "pug": "^2.0.0-beta6",
+    "request": "^2.88.0",
     "simple-oauth2": "^1.2.0",
     "soda-js": "^0.2.2"
   },
