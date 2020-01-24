@@ -19,6 +19,6 @@
     "font-awesome": "fontawesome#^4.7.0",
     "bootstrap": "bootstrap#^3.3.7",
     "bootstrap-validator": "^0.11.9",
-    "trumbowyg": "^2.5.1"
+    "trumbowyg": "^2.21.0"
   }
 }

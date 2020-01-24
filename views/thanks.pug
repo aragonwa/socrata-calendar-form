@@ -1,21 +1,8 @@
-doctype html
-html(lang="en")
-  head
-    meta(charset="utf-8")
-    meta(name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no")  
-    link(rel="stylesheet" href="/bootstrap/dist/css/bootstrap.min.css")
-    link(rel="stylesheet" href="/font-awesome/css/font-awesome.css")
-    title Calendar Input Accepted!
-    // [if lt IE 9]
-    script(src="//oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js")
-    script(src="//oss.maxcdn.com/respond/1.4.2/respond.min.js")
-    // [endif]
-  body
-    .container
-      .row
-        .col-sm-12
-          h1 Success!
-          h2 King County Master Calendar Input
-          p Your submission has been added to the master calendar.
-          p 
-            a(href="/") Add another 
+extends base.pug
+block content
+  .col-sm-12
+    p Your submission has been added to the master calendar.
+    p 
+      a(href='/events') See full list of events
+    p
+      a(href="/add") Add another 

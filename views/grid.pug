@@ -1,0 +1,52 @@
+extends base.pug
+block content
+  .col-sm-12(style="margin-bottom:40px")
+    table.table
+      thead
+        tr
+          th Event name
+          th Start Date
+          th End Date
+          th &nbsp;
+          th &nbsp;
+      tbody
+        for row in rows
+          tr 
+            td #{row.event_name}
+            td.startTime !{row.start_time}
+            td.endTime !{row.end_time}
+            td 
+              a.btn.btn-info(href="/events/"+row[':id']) Edit 
+            td 
+              a.btn.btn-danger(href="#" id=row[':id']) Delete
+block append footer
+  script(type="text/javascript" src="/moment/min/moment.min.js")
+  script(type="text/javascript" src="https://cdn.datatables.net/1.10.20/js/jquery.dataTables.min.js")
+  script(type="text/javascript" src="https://cdn.datatables.net/1.10.20/js/dataTables.bootstrap.min.js")
+  script.
+    $(function () {
+      $('.table').DataTable();
+      $('.startTime').each(function( index ) {
+        const time = $( this ).text();
+        $( this ).text(moment(time).format("dddd, MMMM Do YYYY, h:mm a")); 
+      })
+      $('.endTime').each(function( index ) {
+        const time = $( this ).text();
+        $( this ).text(moment(time).format("dddd, MMMM Do YYYY, h:mm a")); 
+      })
+      console.log($('table'))
+      $('table').on('click', '.btn-danger', function(e){
+        e.preventDefault();
+        const id = e.currentTarget.id;
+        $.ajax({
+          type: "DELETE",
+          url: "/events/" + id,
+          data: "",
+          success: function(msg){
+              console.log("Data Deleted: " + msg);
+              location.reload();
+          }
+        });
+      });
+    });
+

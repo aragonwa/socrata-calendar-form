@@ -1,0 +1,43 @@
+doctype html
+html(lang="en")
+  head
+    block head
+      meta(charset="utf-8")
+      meta(name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no")
+      link(rel="stylesheet" href="/bootstrap/dist/css/bootstrap.min.css")
+      link(rel="stylesheet" href="/font-awesome/css/font-awesome.css")
+      link(rel="stylesheet" href="/eonasdan-bootstrap-datetimepicker/build/css/bootstrap-datetimepicker.css")
+      title King County Master Calendar Input
+      //[if lt IE 9]
+      script(src="//oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js")
+      script(src="//oss.maxcdn.com/respond/1.4.2/respond.min.js")
+      //[endif]
+  body
+    nav.navbar.navbar-inverse
+      .container
+        .navbar-header
+          button(type="button" class="collapsed navbar-toggle" data-toggle="collapse"
+          data-target="#bs-example-navbar-collapse-9" aria-expanded="false")
+            span.sr-only Toggle navigation
+            span.icon-bar
+            span.icon-bar
+            span.icon-bar
+          a.navbar-brand(href="/") King County Master Calendar
+        .collapse.navbar-collapse#bs-example-navbar-collapse-9
+          ul.nav.navbar-nav
+            li
+              a(href="/add") Add event
+            li 
+              a(href="/events") All events
+          ul.nav.navbar-nav.navbar-right
+            li
+              a(href="/logout") Logout
+    .container
+      .row
+        .col-sm-12
+          h1 #{title}
+        block content
+    block footer
+      script(src="//ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js")
+      script(type="text/javascript" src="/bootstrap/dist/js/bootstrap.min.js")
+      
