@@ -12,7 +12,41 @@ html(lang="en")
       script(src="//oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js")
       script(src="//oss.maxcdn.com/respond/1.4.2/respond.min.js")
       //[endif]
+      style.
+        #spinner-front, #spinner-back {
+          position: fixed;
+          top: 0;
+          left: 0;
+          visibility: hidden;
+          opacity: 0;
+          width: 100%;
+          transition: all 1s;
+        }
+        #spinner-front {
+          z-index: 999;
+          margin-top: 45vh;
+          color: #fff;
+          text-align: center;
+        }
+        #spinner-back {
+          z-index: 998;
+          height: 100vh;
+          background: #000;
+        }
+        #spinner-front.show {
+          visibility: visible;
+          opacity: 1;
+        }
+        #spinner-back.show {
+          visibility: visible;
+          opacity: 0.7;
+        }
   body
+    #spinner-front
+      img(src="/ajax-loader.gif")
+      br 
+      | Please wait...
+    #spinner-back
     nav.navbar.navbar-inverse
       .container
         .navbar-header
@@ -40,4 +74,13 @@ html(lang="en")
     block footer
       script(src="//ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js")
       script(type="text/javascript" src="/bootstrap/dist/js/bootstrap.min.js")
-      
+      script.
+       function show () {
+        document.getElementById("spinner-front").classList.add("show");
+        document.getElementById("spinner-back").classList.add("show");
+        }
+        function hide () {
+          document.getElementById("spinner-front").classList.remove("show");
+          document.getElementById("spinner-back").classList.remove("show");
+        }
+            

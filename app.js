@@ -21,6 +21,7 @@ app.use(session({
 
 app.set('view engine', 'pug');
 app.use(express.static('bower_components'));
+app.use(express.static('img'));
 app.use(bodyParser.urlencoded({ extended: false }));
 
 mountRoutes(app, creds);

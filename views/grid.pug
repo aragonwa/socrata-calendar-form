@@ -34,10 +34,10 @@ block append footer
         const time = $( this ).text();
         $( this ).text(moment(time).format("dddd, MMMM Do YYYY, h:mm a")); 
       })
-      console.log($('table'))
       $('table').on('click', '.btn-danger', function(e){
         e.preventDefault();
         const id = e.currentTarget.id;
+        show();
         $.ajax({
           type: "DELETE",
           url: "/events/" + id,
@@ -45,6 +45,7 @@ block append footer
           success: function(msg){
               console.log("Data Deleted: " + msg);
               location.reload();
+              hide();
           }
         });
       });
