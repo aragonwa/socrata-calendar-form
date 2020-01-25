@@ -23,17 +23,41 @@ block append footer
   script(type="text/javascript" src="/moment/min/moment.min.js")
   script(type="text/javascript" src="https://cdn.datatables.net/1.10.20/js/jquery.dataTables.min.js")
   script(type="text/javascript" src="https://cdn.datatables.net/1.10.20/js/dataTables.bootstrap.min.js")
+  script(type="text/javascript" src="//cdn.datatables.net/plug-ins/1.10.20/dataRender/datetime.js")
   script.
     $(function () {
-      $('.table').DataTable();
-      $('.startTime').each(function( index ) {
-        const time = $( this ).text();
-        $( this ).text(moment(time).format("dddd, MMMM Do YYYY, h:mm a")); 
-      })
-      $('.endTime').each(function( index ) {
-        const time = $( this ).text();
-        $( this ).text(moment(time).format("dddd, MMMM Do YYYY, h:mm a")); 
-      })
+      $('.table').DataTable({
+        order: [[ 1, "desc"]],
+        columnDefs: [ {
+          targets: 1,
+          render: function(data, type, row){
+                if(type === "sort" || type === "type"){
+                    return data;
+                }
+                return moment(data).format("dddd, MMMM Do YYYY, h:mm a");
+          }
+
+        },
+        {
+          targets: 2,
+          render: function(data, type, row){
+                if(type === "sort" || type === "type"){
+                    return data;
+                }
+                return moment(data).format("dddd, MMMM Do YYYY, h:mm a");
+          }
+
+        }
+         ],
+      });
+      //- $('.startTime').each(function( index ) {
+      //-   const time = $( this ).text();
+      //-   $( this ).text(moment(time).format("dddd, MMMM Do YYYY, h:mm a")); 
+      //- })
+      //- $('.endTime').each(function( index ) {
+      //-   const time = $( this ).text();
+      //-   $( this ).text(moment(time).format("dddd, MMMM Do YYYY, h:mm a")); 
+      //- })
       $('table').on('click', '.btn-danger', function(e){
         e.preventDefault();
         const id = e.currentTarget.id;
