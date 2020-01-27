@@ -18,7 +18,6 @@ app.use(session({
   saveUninitialized: false, // don't create session until something stored
 }));
 
-
 app.set('view engine', 'pug');
 app.use(express.static('bower_components'));
 app.use(express.static('img'));

@@ -22,7 +22,6 @@
     "soda-js": "^0.2.3"
   },
   "devDependencies": {
-    "localtunnel": "^2.0.0",
     "morgan": "^1.8.1"
   }
 }

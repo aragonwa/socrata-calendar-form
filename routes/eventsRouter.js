@@ -8,6 +8,7 @@ var routes = (config) => {
   const producer = new soda.Producer('data.kingcounty.gov', config.socrata);
   router.route('/')
     .get(auth, (req, res) => {
+      // TODO: Remove past events
       consumer.query()
         .withDataset(config.socrata.dataset)
         .limit(100)
@@ -48,6 +49,7 @@ var routes = (config) => {
         });
     })
     .delete(auth, (req, res) => {
+
       const data = { ":id": req.params.id, ":deleted": true };
       producer.operation()
         .withDataset(config.socrata.dataset)
