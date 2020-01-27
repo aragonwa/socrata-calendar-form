@@ -4,7 +4,8 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "start": "gulp default",
+    "dev": "gulp default",
+    "start": "node app.js",
     "postinstall": "bower install"
   },
   "author": "Alex Aragon <Alex.Aragon@kingcounty.gov>",
