@@ -6,16 +6,18 @@ const processBody = require('../util/processBody');
 var routes = (config) => {
   const consumer = new soda.Consumer('data.kingcounty.gov');
   const producer = new soda.Producer('data.kingcounty.gov', config.socrata);
+
   router.route('/')
     .get(auth, (req, res) => {
-      // TODO: Remove past events
+      let today = new Date();
+      today = `${today.getFullYear()}-${today.getDay()}-${today.getDate()}`;
+
       consumer.query()
         .withDataset(config.socrata.dataset)
-        .limit(100)
         .select(['*', ':id'])
+        .where(soda.expr.gte(['start_time'],today))
         .getRows()
         .on('success', function (rows) {
-          // console.log(rows);
           res.render('grid', { title: "All events", rows: rows });
         })
         .on('error', function (error) { console.error(error); });
