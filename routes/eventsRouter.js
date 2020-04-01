@@ -15,10 +15,16 @@ var routes = (config) => {
       consumer.query()
         .withDataset(config.socrata.dataset)
         .select(['*', ':id'])
-        .where(soda.expr.gte(['start_time'],today))
+        // Remove this query params
+        // .where(soda.expr.gte(['start_time'],today))
         .getRows()
         .on('success', function (rows) {
-          res.render('grid', { title: "All events", rows: rows });
+          const filteredRows = rows.filter(function (row) {
+            const end = new Date(row.end_time);
+            const now = new Date();
+            return end >= now;
+          });
+          res.render('grid', { title: "All events", rows: filteredRows });
         })
         .on('error', function (error) { console.error(error); });
     });
@@ -31,24 +37,24 @@ var routes = (config) => {
         .where({ ":id": req.params.id })
         .getRows()
         .on('success', function (row) {
-           res.render('edit', { title: row[0].event_name, row: row[0] });
+          res.render('edit', { title: row[0].event_name, row: row[0] });
         })
         .on('error', function (error) { console.error(error); });
     })
     .post(auth, (req, res) => {
       let data = processBody(req.body);
       data[':id'] = req.params.id,
-      // Push to Socrata
-      producer.operation()
-        .withDataset(config.socrata.dataset)
-        .upsert(data)
-        .on('success', (row) => {
-          res.redirect('/thanks');
-        })
-        .on('error', function (error) {
-          console.error(error);
-          res.redirect('/error');
-        });
+        // Push to Socrata
+        producer.operation()
+          .withDataset(config.socrata.dataset)
+          .upsert(data)
+          .on('success', (row) => {
+            res.redirect('/thanks');
+          })
+          .on('error', function (error) {
+            console.error(error);
+            res.redirect('/error');
+          });
     })
     .delete(auth, (req, res) => {
 
