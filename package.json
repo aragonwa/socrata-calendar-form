@@ -19,7 +19,7 @@
     "express-session": "^1.15.1",
     "gulp": "^4.0.2",
     "gulp-nodemon": "^2.2.1",
-    "pug": "^2.0.0-beta6",
+    "pug": "^3.0.1",
     "soda-js": "^0.2.3"
   },
   "devDependencies": {
