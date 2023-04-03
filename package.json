@@ -1,7 +1,7 @@
 {
   "name": "calendar-form",
   "version": "1.0.0",
-  "description": "",
+  "description": "Updated",
   "main": "index.js",
   "scripts": {
     "dev": "gulp default",
