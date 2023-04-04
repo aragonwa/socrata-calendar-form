@@ -15,6 +15,7 @@ var routes = (config) => {
       consumer.query()
         .withDataset(config.socrata.dataset)
         .select(['*', ':id'])
+        .where(soda.expr.gte(['start_time'], today))
         // Remove this
         // .where(soda.expr.gte(['start_time'],today))
         .getRows()
