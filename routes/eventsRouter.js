@@ -10,12 +10,12 @@ var routes = (config) => {
   router.route('/')
     .get(auth, (req, res) => {
       let today = new Date();
-      today = `${today.getFullYear()}-${today.getDay()}-${today.getDate()}`;
+      today = `${today.getFullYear()}-${today.getMonth()}-${today.getDate()}`;
 
       consumer.query()
         .withDataset(config.socrata.dataset)
         .select(['*', ':id'])
-        // .where(soda.expr.gte(['start_time'], today))
+        .where(soda.expr.gte(['start_time'], today))
         // Remove this
         // .where(soda.expr.gte(['start_time'],today))
         .getRows()
