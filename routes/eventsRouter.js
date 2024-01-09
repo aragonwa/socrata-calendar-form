@@ -10,7 +10,7 @@ var routes = (config) => {
   router.route('/')
     .get(auth, (req, res) => {
       let today = new Date();
-      today = `${today.getFullYear()}-${today.getMonth()}-${today.getDate()}`;
+      today = `${today.getFullYear()}-${today.getMonth()+1}-${today.getDate()}`;
 
       consumer.query()
         .withDataset(config.socrata.dataset)
