@@ -9,7 +9,8 @@ var routes = (config) => {
 
   router.route('/')
     .get(auth, (req, res) => {
-      let today = new Date();
+      let today = new Date(new Date().setDate(new Date().getDate() - 7));
+
       today = `${today.getFullYear()}-${today.getMonth()+1}-${today.getDate()}`;
 
       consumer.query()
@@ -22,7 +23,7 @@ var routes = (config) => {
         .on('success', function (rows) {
           const filteredRows = rows.filter(function (row) {
             const end = new Date(row.end_time);
-            const now = new Date();
+            const now = new Date(new Date().setDate(new Date().getDate() - 7));
             return end >= now;
           });
           res.render('grid', { title: "All events", rows: filteredRows });
