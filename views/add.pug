@@ -10,7 +10,7 @@ block content
         .help-block.with-errors
       .form-group
         label(for="endTimeDate") End date/time
-        input.form-control.datetimepicker(type="text" name="endTimeDate" id="endTimeDate" required)
+        input.form-control.datetimepicker(type="text" name="endTimeDate" id="endTimeDate" required  data-equals="foo")
         .help-block.with-errors
       .form-group
         label(for="eventName") Event name
@@ -320,5 +320,17 @@ block append footer
       $('#eventDescription').trumbowyg({
         removeformatPasted: true
       });
+      $('#calendar-form').validator({
+        custom: {
+          equals: function($el) {
+            var matchValue = $el.data("equals") // foo
+            var startTime = new Date($("#startTimeDate").val());
+            var endTime = new Date( $("#endTimeDate").val());
+            if (startTime.getTime() > endTime.getTime()) {
+              return "Start date can not be after end date";
+            }
+          }
+        }
+      })
     });
 
