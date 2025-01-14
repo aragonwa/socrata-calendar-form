@@ -2,7 +2,6 @@ const express = require('express');
 const bodyParser = require('body-parser');
 const session = require('express-session');
 const mountRoutes = require('./routes');
-//Edit
 
 const app = express();
 
