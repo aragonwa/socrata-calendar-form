@@ -172,7 +172,7 @@ stages:
                 # Template reference
                 - template: 'deploy-webApp.yml'
                   parameters:
-                    azureSubscription: 'Engineering-Sandbox'
+                    azureSubscription: 'Azure-Sandbox'
                     WebAppName: 'dce-socrata-calendar'
   # Dev
 
