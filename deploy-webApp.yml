@@ -1,0 +1,24 @@
+
+parameters:
+  azureSubscription: ''
+  WebAppName: ''
+steps:
+  - task: AzureRmWebAppDeployment@4
+    displayName: "Azure App Service Deploy: ${{parameters.WebAppName}}"
+    inputs:
+      azureSubscription: ${{ parameters.azureSubscription }}
+      appType: "webApp"
+      WebAppName: ${{ parameters.WebAppName }}
+      packageForLinux: "$(Pipeline.Workspace)/$(Build.SourceBranchName)-drop"
+      # StartupCommand: 'pm2 start /home/site/wwwroot/ecosystem.config.js --no-daemon'
+      StartupCommand: "npm run start"
+      # ScriptType: "Inline Script"
+      # InlineScript: "npm run start"
+      RemoveAdditionalFilesFlag: true  
+  # - task: Npm@1
+  #   displayName: 'npm custom'
+  #   inputs:
+  #     command: custom
+  #     workingDir: '$(System.DefaultWorkingDirectory)/_Web-Mobile-Client/dev-drop'
+  #     verbose: false
+  #     customCommand: 'npm run start'

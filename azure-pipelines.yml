@@ -1,20 +1,226 @@
-# Node.js
-# Build a general Node.js project with npm.
-# Add steps that analyze code, save build artifacts, deploy, and more:
-# https://docs.microsoft.com/azure/devops/pipelines/languages/javascript
+name: $(SourceBranchName)-$(date:yyyyMMdd)$(rev:.r)
+
+resources:
+  repositories:
+    - repository: self
+      type: git
+      name: self
+
+# This repo is for when you store your build/deploy templates in a central repo like Infrastructure
+# Which you should do when you have several apps using the same build/deploy templates
+# Which you would when there's, say, seven web apps to spin out
+
+#  - repository: templates
+#    type: git
+#    name: # Repo that holds the templates. Format: [project]/[repository] Example: DevOps/Infrastructure
+#    ref: refs/heads/develop # Uncomment for testing dev yml files
 
 trigger:
-- master
+  branches:
+    include:
+      - master
+  paths:
+    exclude:
+      - node_modules
+      - bower_components
 
-pool:
-  vmImage: ubuntu-latest
+variables:
+  project: 'socratacalendar'
+  siteName: '$(project)-$(env)-app'
+  artifactName: '$(Build.SourceBranchName)-drop'
 
-steps:
-- task: NodeTool@0
-  inputs:
-    versionSpec: '16.x'
-  displayName: 'Install Node.js'
+# Build
 
-- script: |
-    npm install
-  displayName: 'npm install and build'
+stages:
+  - stage: Build
+
+    # this is utterly unneccessary, but you can't use variables in the displayName and I like neat titles
+    ${{ if eq(variables['Build.SourceBranch'], 'refs/heads/master') }}:
+      displayName: master branch build
+
+    variables:
+      buildConfiguration: 'release'
+      buildPlatform: 'any cpu'
+      env: $(Build.SourceBranchName)
+      
+    jobs:
+      - job: build_npm
+        displayName: 'build and package'
+        pool:
+          vmImage: windows-latest
+        workspace:
+          clean: all # Options: outputs, resources, all
+        # variables:
+        #   - name: secureFile
+        #     ${{ if eq(variables['Build.SourceBranch'], 'refs/heads/dev') }}:
+        #       value: '.env-cmdrc'
+        #     ${{ if eq(variables['Build.SourceBranch'], 'refs/heads/test') }}:
+        #       value: '.env-cmdrc'
+        #     ${{ if eq(variables['Build.SourceBranch'], 'refs/heads/uat') }}:
+        #       value: '.env-cmdrc'
+        #     ${{ if eq(variables['Build.SourceBranch'], 'refs/heads/main') }}:
+        #       value: '.env-cmdrc'
+        #   - name: buildScript
+        #     ${{ if eq(variables['Build.SourceBranch'], 'refs/heads/dev') }}:
+        #       value: 'npm run build:dev'
+        #     ${{ if eq(variables['Build.SourceBranch'], 'refs/heads/test') }}:
+        #       value: 'npm run build:test'
+        #     ${{ if eq(variables['Build.SourceBranch'], 'refs/heads/uat') }}:
+        #       value: 'npm run build:uat'
+        #     ${{ if eq(variables['Build.SourceBranch'], 'refs/heads/main') }}:
+        #       value: 'npm run build:prod'
+        steps:
+          # Template reference
+          - template: ./build-webApp.yml
+            # parameters:
+            #   secureFile: ${{variables.secureFile}}
+            #   buildScript: ${{variables.buildScript}}
+
+
+
+  # Dev
+  # - stage: Deploy_to_Prod
+  #   displayName: 'Prod'
+  #   dependsOn:
+  #     - 'Build'
+  #   condition: and(succeeded(), eq(variables['Build.SourceBranch'], 'refs/heads/dev'))
+  #   variables:
+  #     env: 'production'
+  #   jobs:
+  #     - deployment: devApp
+  #       displayName: 'deploy App'
+  #       pool:
+  #         vmImage: windows-latest
+  #       environment: Production
+  #       strategy:
+  #         runOnce:
+  #           deploy:
+  #             steps:
+  #               # Template reference
+  #               - template: ./deploy-webApp.yml
+  #                 parameters:
+  #                   azureSubscription: 'Azure-Dev'  
+  #                   WebAppName: 'fe-app-proxy'      
+  # # Test
+
+  # - stage: Deploy_to_Test
+  #   displayName: 'Test'
+  #   dependsOn:
+  #     - 'Build'
+  #   condition: and(succeeded(), eq(variables['Build.SourceBranch'], 'refs/heads/test'))
+  #   variables:
+  #     env: 'test'
+  #   jobs:
+  #     - deployment: testApp
+  #       displayName: 'deploy app'
+  #       pool:
+  #         vmImage: windows-latest
+  #       environment: Test
+  #       strategy:
+  #         runOnce:
+  #           deploy:
+  #             steps:
+  #               # Template reference
+  #               - template: 'deploy-webApp.yml'
+  #                 parameters:
+  #                   azureSubscription: 'Azure-Test'
+  #                   WebAppName: 'floodwarning-test-app-webmobile'
+  # # UAT
+
+  # - stage: Deploy_to_UAT
+  #   displayName: 'UAT'
+  #   dependsOn:
+  #     - 'Build'
+  #   condition: and(succeeded(), eq(variables['Build.SourceBranch'], 'refs/heads/uat'))
+  #   variables:
+  #     env: 'uat'
+  #   jobs:
+  #     - deployment: uatApp
+  #       displayName: 'deploy app'
+  #       pool:
+  #         vmImage: windows-latest
+  #       environment: UAT
+  #       strategy:
+  #         runOnce:
+  #           deploy:
+  #             steps:
+  #               # Template reference
+  #               - template: 'deploy-webApp.yml'
+  #                 parameters:
+  #                   azureSubscription: 'Azure-UAT'
+  #                   WebAppName: 'floodwarning-uat-app-webmobile'
+
+  # Production
+  
+  - stage: Deploy_to_Production
+    displayName: 'Production'
+    dependsOn:
+      - 'Build'
+    condition: and(succeeded(), eq(variables['Build.SourceBranch'], 'refs/heads/main')) # Production pulls from the master build.
+    variables:
+      env: 'production'
+    jobs:
+      - deployment: productionApp
+        displayName: 'deploy app'
+        pool:
+          vmImage: windows-latest
+        environment: Production
+        strategy:
+          runOnce:
+            deploy:
+              steps:
+                # Template reference
+                - template: 'deploy-webApp.yml'
+                  parameters:
+                    azureSubscription: 'Engineering-Sandbox'
+                    WebAppName: 'dce-socrata-calendar'
+  # Dev
+
+  # - stage: Deploy_to_Dev
+  #   displayName: 'Dev'
+  #   dependsOn:
+  #     - 'Build'
+  #   condition: and(succeeded(), eq(variables['Build.SourceBranch'], 'refs/heads/dev'))
+  #   variables:
+  #     # this is where you put all the variables that change between stages
+  #     env: 'dev'
+  #   jobs:
+  #     - deployment: devApp
+  #       displayName: 'deploy app'
+  #       pool:
+  #         vmImage: windows-latest
+  #       environment: Dev
+  #       strategy:
+  #         runOnce:
+  #           deploy:
+  #             steps:
+  #               # Template reference
+  #               - template: 'deploy-webApp.yml'
+  #                 parameters:
+  #                   azureSubscription: 'Azure-Dev' # weirdly, you can't pass in a variable. Takes it literally.
+
+  # # Test
+
+  # - stage: Deploy_to_Test
+  #   displayName: 'Test'
+  #   dependsOn:
+  #     - 'Build'
+  #   condition: and(succeeded(), eq(variables['Build.SourceBranch'], 'refs/heads/test'))
+  #   variables:
+  #     env: 'test'
+  #   jobs:
+  #     - deployment: testApp
+  #       displayName: 'deploy app'
+  #       pool:
+  #         vmImage: windows-latest
+  #       environment: Test
+  #       strategy:
+  #         runOnce:
+  #           deploy:
+  #             steps:
+  #               # Template reference
+  #               - template: 'deploy-webApp.yml'
+  #                 parameters:
+  #                   azureSubscription: 'Azure-Test'
+
+
