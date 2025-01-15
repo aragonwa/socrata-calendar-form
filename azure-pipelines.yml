@@ -164,7 +164,7 @@ stages:
         displayName: 'deploy app'
         pool:
           vmImage: windows-latest
-        environment: Dev
+        environment: Production
         strategy:
           runOnce:
             deploy:
