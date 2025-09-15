@@ -1,6 +1,6 @@
 extends base.pug
 block append head
-  link(rel="stylesheet" href="/trumbowyg/dist/ui/trumbowyg.min.css")
+  link(rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/Trumbowyg/2.21.0/ui/trumbowyg.min.css")
 block content
   .col-sm-12(style="margin-bottom:40px")
     form(method="post" id="calendar-form" data-toggle="validator")
@@ -302,7 +302,7 @@ block content
 block append footer
   script(type="text/javascript" src="/moment/min/moment.min.js")
   script(type="text/javascript" src="/eonasdan-bootstrap-datetimepicker/build/js/bootstrap-datetimepicker.min.js")
-  script(type="text/javascript" src="/trumbowyg/dist/trumbowyg.min.js")
+  script(type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/Trumbowyg/2.21.0/trumbowyg.min.js")
   script(type="text/javascript" src="/bootstrap-validator/dist/validator.min.js")
   script.
     $(function () {
