@@ -3,7 +3,7 @@ const router = require('express').Router();
 var routes = (config) => {
   router.route('/')
     .get((req, res) => {
-      req.session.destroy();
+      req.session = null;
       res.redirect('/login');
     });
 
