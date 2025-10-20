@@ -37,7 +37,7 @@ module.exports = (body) => {
   body.categoryRecreation = (body.categoryRecreation) ? true : false;
   body.categoryRecyclingTrash = (body.categoryRecyclingTrash) ? true : false;
   body.categorySkywayWestHill = (body.categorySkywayWestHill) ? true : false;
-  body.categorySnoqualmieValleyNEKingCountyAreas = (body.categorySnoqualmieValley) ? true : false;
+  body.categorySnoqualmieValleyNEKingCountyAreas = (body.categorySnoqualmieValleyNEKingCountyAreas) ? true : false;
   body.categorySolidWasteHome = (body.categorySolidWasteHome) ? true : false;
   body.categorySolidWasteAdvisory = (body.categorySolidWasteAdvisory) ? true : false;
   body.categorySolidWasteEcoConsumer = (body.categorySolidWasteEcoConsumer) ? true : false;

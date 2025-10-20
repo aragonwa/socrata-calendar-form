@@ -7,7 +7,7 @@ var routes = (config) => {
   var producer = new soda.Producer('data.kingcounty.gov', config.socrata);
   router.route('/')
     .get(auth, (req, res) => {
-      res.render('add', {title: 'Add an event'});
+      res.render('add', { title: 'Add an event' });
     })
     .post((req, res) => {
       const data = processBody(req.body);
